@@ -4,6 +4,7 @@ use crate::command::Command;
 
 pub struct Machine {
   pointer: usize,
+  register: i32,
   memory: Vec<i32>,
 }
 
@@ -11,6 +12,7 @@ impl Machine {
   pub fn new() -> Machine {
     Machine {
       pointer: 0,
+      register: 0,
       memory: Vec::new(),
     }
   }
@@ -58,6 +60,17 @@ impl Machine {
         while self.memory[self.pointer] != 0 {
           self.interpret(&cs);
         }
+      },
+      Command::Block(cs) => {
+        self.interpret(&cs);
+      },
+      Command::Store() => {
+        self.ensure_memory();
+        self.register = self.memory[self.pointer];
+      },
+      Command::Load() => {
+        self.ensure_memory();
+        self.memory[self.pointer] = self.register;
       },
     }
   }

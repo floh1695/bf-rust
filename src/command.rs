@@ -7,4 +7,7 @@ pub enum Command {
   Out(),
   In(),
   Loop(Vec<Command>),
+  Block(Vec<Command>),
+  Store(),
+  Load(),
 }

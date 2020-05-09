@@ -4,4 +4,8 @@ version = "0.1.0"
 authors = ["cbayley"]
 edition = "2018"
 
+[profile.dev]
+pt-level = 1
+debug = true
+
 [dependencies]
